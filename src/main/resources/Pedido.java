@@ -2,7 +2,7 @@ package codigos;
 
 public class Pedido {
 
-    public float calculaTaxaDesconto (boolean primeiraCompra, String tipoCliente, float valorCompra) {
+    public float calculaTaxaDesconto (boolean primeiraCompra, String tipoCliente, float valorCompra) { //0
         if (valorCompra > 500) //1
             return 15; // 2 -> folha
         if (tipoCliente.equals("ouro")) // 3

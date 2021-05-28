@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 public class Node {
 
     private String value;
-    private Node left;
-    private Node right;
+    private Edge left;
+    private Edge right;
+    private boolean leaf;
 
 }
