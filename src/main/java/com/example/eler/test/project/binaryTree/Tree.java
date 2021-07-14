@@ -21,10 +21,12 @@ public class Tree {
                 }
             }
         }
-        System.out.println("Grafo:");
-       // printTree(root);
+        System.out.println("Grafo: ");
+        printTree(root);
         String path[] = new String[1000];
+        System.out.println("Identificar caminhos: ");
         printPathsRecur(root, path, 0);
+        System.out.println("Sequência de restrições: ");
     }
 
     public String cleanLine(String line) {
@@ -71,30 +73,24 @@ public class Tree {
     //Mostrar todos os caminhos da arvore
     void printPathsRecur(Node node, String path[], int pathLen)
     {
-        if (node == null)
+        if (node == null) {
             return;
-
-        /* append this node to the path array */
+        }
         path[pathLen] = node.getValue();
         pathLen++;
 
-        /* it's a leaf, so print the path that led to here  */
-        if (node.getLeft() == null && node.getRight() == null)
+        if (node.getLeft() == null && node.getRight() == null){
             printArray(path, pathLen);
-        else
-        {
-            /* otherwise try both subtrees */
+        } else {
             printPathsRecur(node.getLeft(), path, pathLen);
             printPathsRecur(node.getRight(), path, pathLen);
         }
     }
 
-    /* Utility function that prints out an array on a line. */
     void printArray(String ints[], int len)
     {
         int i;
-        for (i = 0; i < len; i++)
-        {
+        for (i = 0; i < len; i++) {
             System.out.print(ints[i] + " ");
         }
         System.out.println("");
