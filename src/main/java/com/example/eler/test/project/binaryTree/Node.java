@@ -4,12 +4,14 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 @Component
-@Data
+@Getter
+@Setter
 public class Node {
 
     private String value;
-    private Edge left;
-    private Edge right;
+    private Node left;
+    private Node right;
+    private Node prior;
     private boolean leaf;
 
 }
