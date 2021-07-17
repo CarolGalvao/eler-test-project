@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class Tree {
 
     ArrayList<String[]> paths = new ArrayList<>();
+    int pathNumber = 0;
 
     public void setTree(String javaFile){
         String[] arrays = javaFile.split("\n");
@@ -98,6 +99,8 @@ public class Tree {
     }
 
     void printArray(String ints[], int len, Node node ) {
+        System.out.print(pathNumber + " : ");
+        pathNumber++;
         for (int i = 0; i < len; i++) {
             if(i != len - 2 || node.getPrior().getRight().getValue().equals(ints[i + 1]) ){
                 ints[i] = ints[i].replace(">", "<");
@@ -113,6 +116,7 @@ public class Tree {
     //Mostra sequencias de restrições
     public void printRestriction () {
         paths.stream().forEach(path ->{
+            System.out.print(paths.lastIndexOf(path));
             Arrays.stream(path).sequential().forEach(
                     param -> {
                         if(param == null) return;
