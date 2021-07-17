@@ -1,15 +1,18 @@
 package com.example.eler.test.project;
 
 import com.example.eler.test.project.binaryTree.Tree;
-import org.springframework.stereotype.Service;
+import com.example.eler.test.project.processing.Print;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class Join {
+
+    private final Print print = new Print();
 
     public void callAll(){
         ReadFile readFile = new ReadFile();
         Tree tree = new Tree();
         String fileContent = readFile.readFromJARFile("src/main/resources/Pedido.java");
-        tree.setTree(fileContent);
+        print.printProcessing(tree.setTree(fileContent));
     }
 }
