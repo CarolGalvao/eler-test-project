@@ -26,17 +26,11 @@ public class TestData {
                         param = param.replaceAll(" ","");
                         if(param.contains(">")){
                             param = param.replace("valorCompra>", "");
-                            int data = Integer.parseInt(param);
-                            int[] dataList = {data+1, data+15};
-                            Pair<String, int[]> paramData = new Pair<>("valorCompra", dataList);
-                            listOfDataPerPath.add(paramData);
+                            addPurchaseValue(listOfDataPerPath,param,1,15);
                         }
                         if(param.contains("<")){
                             param = param.replace("valorCompra<", "");
-                            int data = Integer.parseInt(param);
-                            int[] dataList = {data, data-15};
-                            Pair<String, int[]> paramData = new Pair<>("valorCompra", dataList);
-                            listOfDataPerPath.add(paramData);
+                            addPurchaseValue(listOfDataPerPath,param,0,-15);
                         }
                         if(param.contains("==")){
                             param = param.replace("tipoCliente==", "");
@@ -45,28 +39,33 @@ public class TestData {
                             Pair<String, int[]> paramData = new Pair<>("tipoCliente", dataList);
                             listOfDataPerPath.add(paramData);
                         }
-                        //TODO
-                        //tipo cliente !=
+                        if(param.contains("!=")){
+                            param = param.replace("tipoCliente!=", "");
+                            int data = Integer.parseInt(param);
+                            int[] dataList = differentTypeOfCustomer(data);
+                            Pair<String, int[]> paramData = new Pair<>("tipoCliente", dataList);
+                            listOfDataPerPath.add(paramData);
+                        }
                         if(param.equals("primeiraCompra")){
                             int[] dataList = {1};
-                            Pair<String, int[]> paramData = new Pair<>("primeiraCompra", dataList);
-                            listOfDataPerPath.add(paramData);
+                            addFirstBuy(dataList,listOfDataPerPath);
                         }
                         if(param.equals("!primeiraCompra")){
                             int[] dataList = {0};
-                            Pair<String, int[]> paramData = new Pair<>("primeiraCompra", dataList);
-                            listOfDataPerPath.add(paramData);
+                            addFirstBuy(dataList,listOfDataPerPath);
                         }
                     }
             );
             listOfData.put(paths.lastIndexOf(path), listOfDataPerPath);
         });
 
+        printTestData(listOfData);
+    }
+
+    private void printTestData(Map<Integer,  ArrayList<Pair<String, int[]>>> listOfData) {
         System.out.println("Lista de dados");
-        //    Map<Integer,  ArrayList<Pair<String, int[]>>>
         listOfData.forEach( (integer, arrayList) -> {
             System.out.println("Caminho: " + integer);
-            //System.out.println(arrayList);
             arrayList.forEach(stringPair -> {
                 System.out.print("Parametro: " + stringPair.getKey());
                 System.out.println(" Dados: " + Arrays.toString(stringPair.getValue()));
@@ -74,4 +73,25 @@ public class TestData {
             System.out.println("");
         });
     }
+
+    private void addFirstBuy (int[] dataList, ArrayList<Pair<String, int[]>> listOfDataPerPath) {
+        Pair<String, int[]> paramData = new Pair<>("primeiraCompra", dataList);
+        listOfDataPerPath.add(paramData);
+    }
+
+   private void addPurchaseValue(ArrayList<Pair<String, int[]>> listOfDataPerPath, String param, int add1, int add2) {
+       int data = Integer.parseInt(param);
+       int[] dataList = {data + add1, data + add2};
+       Pair<String, int[]> paramData = new Pair<>("valorCompra", dataList);
+       listOfDataPerPath.add(paramData);
+   }
+
+   private int[] differentTypeOfCustomer(int customer){
+        ArrayList<Integer> customers = new ArrayList<>();
+        customers.add(1);
+        customers.add(2);
+        customers.add(3);
+        customers.remove(Integer.valueOf(customer));
+        return customers.stream().mapToInt(i -> i).toArray();
+   }
 }
