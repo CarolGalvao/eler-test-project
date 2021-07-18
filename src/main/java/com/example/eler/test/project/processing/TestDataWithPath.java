@@ -3,10 +3,10 @@ package com.example.eler.test.project.processing;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TestData {
+public class TestDataWithPath {
 
     //Mostrar os dados para cada caminho
-    public void printData(ArrayList<String[]> paths) {
+    public Map<Integer, Map<String, int[]>> printDataWithPath(ArrayList<String[]> paths) {
         Map<Integer, Map<String, int[]>> listOfData = new HashMap<>();
 
         paths.forEach(path -> {
@@ -46,6 +46,7 @@ public class TestData {
             listOfData.put(paths.lastIndexOf(path), listOfDataPerPath);
         });
         printTestData(listOfData);
+        return listOfData;
     }
 
     private void printTestData(Map<Integer, Map<String, int[]>> listOfData) {

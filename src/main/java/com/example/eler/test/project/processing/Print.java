@@ -10,7 +10,9 @@ public class Print {
 
     private final Restrictions restrictions = new Restrictions();
 
-    private final TestData testData = new TestData();
+    private final TestDataWithPath testData = new TestDataWithPath();
+
+    private final DataMatrix dataMatrix = new DataMatrix();
 
     public void printProcessing(Node root) {
         System.out.println(" ");
@@ -23,6 +25,6 @@ public class Print {
         System.out.println(" ");
         System.out.println("Sequência de restrições: ");
         restrictions.printRestriction(pathsPrint.getPaths());
-        testData.printData(pathsPrint.getPaths());
+        dataMatrix.dataMatrix(testData.printDataWithPath(pathsPrint.getPaths()));
     }
 }
