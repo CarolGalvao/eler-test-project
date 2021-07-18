@@ -1,13 +1,9 @@
 package com.example.eler.test.project.binaryTree;
 
-import com.example.eler.test.project.component.Pair;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 @Data
