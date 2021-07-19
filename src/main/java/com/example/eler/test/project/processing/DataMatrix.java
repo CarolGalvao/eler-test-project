@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 public class DataMatrix {
 
-    public  Set<ArrayList<Integer>> dataMatrix(Map<Integer, Map<String, int[]>> listOfDataPerPath) {
-        Set<ArrayList<Integer>> finalData = new HashSet<>();
+    public  ArrayList<ArrayList<Integer>> dataMatrix(Map<Integer, Map<String, int[]>> listOfDataPerPath) {
+        ArrayList<ArrayList<Integer>> finalData = new ArrayList<>();
         listOfDataPerPath.forEach((integer, stringMap) -> {
             int biggerSizeMap = -1 ;
             for (String key : stringMap.keySet()) {
@@ -18,6 +18,7 @@ public class DataMatrix {
                 int firstPurchase = 0;
                 int typeOfCustomer = 0;
                 int value = 0;
+                int result = 0;
 
                 if(stringMap.get("tipoCliente") != null) {
 
@@ -39,6 +40,8 @@ public class DataMatrix {
                             stringMap.get("valorCompra")).boxed().collect(Collectors.toList());
                     if(values.size() - 1 > i) value = values.get(i);
                     else value = values.get(values.size()-1);
+                }if(stringMap.get("return") != null){
+                    result = stringMap.get("return")[0];
                 }
                 ArrayList<Integer> arrayList = new ArrayList<>();
                 arrayList.add(value);
@@ -47,20 +50,31 @@ public class DataMatrix {
 
                 AtomicBoolean equal = new AtomicBoolean(false);
                 finalData.forEach(integers -> {
-                    if(integers.contains(arrayList)){
+                    arrayList.add( integers.get(3));
+                    if(integers.equals(arrayList)){
                         equal.set(true);
                     }
+                    arrayList.remove(integers.get(3));
                 });
+                arrayList.add(result);
                 if(!equal.get())finalData.add(arrayList);
             }
         });
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(0);
+        arrayList.add(0);
+        arrayList.add(0);
+        arrayList.add(0);
+
+        finalData.add(arrayList);
         printMatrix(finalData);
         return finalData;
     }
 
-    private void printMatrix(Set<ArrayList<Integer>> data){
+    private void printMatrix(ArrayList<ArrayList<Integer>> data){
+        System.out.println("");
         System.out.println("Matriz de dados");
-        System.out.println("Valor   Primeira Compra   Tipo de Cliente");
+        System.out.println("Valor   Primeira Compra   Cliente     Resultado");
         data.forEach(datas -> {
                 for (int value: datas) {
                     System.out.print(value + "             ");

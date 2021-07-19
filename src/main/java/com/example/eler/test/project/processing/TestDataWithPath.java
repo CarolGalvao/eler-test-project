@@ -40,6 +40,11 @@ public class TestDataWithPath {
                         }if (param.equals("!primeiraCompra")) {
                             int[] dataList = {0};
                             listOfDataPerPath.put("primeiraCompra", dataList);
+                        } if (param.contains("return")) {
+                            param = param.replace("return", "");
+                            param = param.replace(";", "");
+                            int[] data = {Integer.parseInt(param)};
+                            listOfDataPerPath.put("return", data);
                         }
                     }
             );
@@ -54,7 +59,9 @@ public class TestDataWithPath {
         listOfData.forEach((integer, stringMap) -> {
             System.out.println("Caminho: " + integer);
             for (String key : stringMap.keySet()) {
-                System.out.println(" Parametro: " + key + " Dado: " + Arrays.toString(stringMap.get(key)));
+                if(!key.equals("return")){
+                    System.out.println(" Parametro: " + key + " Dado: " + Arrays.toString(stringMap.get(key)));
+                }
             }
         });
     }
@@ -67,7 +74,7 @@ public class TestDataWithPath {
 
     private void differentTypeOfCustomer(Map<String, int[]> listOfDataPerPath, int customer) {
         ArrayList<Integer> customers = new ArrayList<>(
-                Arrays.stream(new int[]{1, 2, 3}).boxed().collect(Collectors.toList()));
+                Arrays.stream(new int[]{0, 1, 2, 3}).boxed().collect(Collectors.toList()));
         customers.remove(Integer.valueOf(customer));
         addDifferent(listOfDataPerPath,"tipoCliente", customers.stream().mapToInt(j -> j).toArray());
     }

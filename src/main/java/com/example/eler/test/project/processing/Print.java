@@ -25,6 +25,7 @@ public class Print {
         System.out.println(" ");
         System.out.println("Sequência de restrições: ");
         restrictions.printRestriction(pathsPrint.getPaths());
+        System.out.println("");
         dataMatrix.dataMatrix(testData.printDataWithPath(pathsPrint.getPaths()));
     }
 }
