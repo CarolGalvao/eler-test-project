@@ -14,6 +14,6 @@ public class Join {
         ReadFile readFile = new ReadFile();
         Tree tree = new Tree();
         String fileContent = readFile.readFromJARFile("src/main/resources/Pedido.java");
-        print.printProcessing(tree.setTree(fileContent));
+        print.printProcessing(tree.setTree(fileContent),fileContent);
     }
 }
