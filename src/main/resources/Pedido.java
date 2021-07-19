@@ -1,7 +1,7 @@
 package codigos;
 
 //bronze = 1
-//prate = 2
+//prata = 2
 //ouro = 3
 
 public class Pedido {
