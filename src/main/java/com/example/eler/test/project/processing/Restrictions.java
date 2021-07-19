@@ -7,8 +7,7 @@ public class Restrictions {
 
     //Mostra sequencias de restrições
     public ArrayList<String[]> printRestriction(ArrayList<String[]> paths) {
-        ArrayList<String[]> sequenceOfConstraints = paths;
-        sequenceOfConstraints.forEach(path -> {
+        paths.forEach(path -> {
             System.out.print(paths.lastIndexOf(path));
             Arrays.stream(path).sequential().forEach(
                     param -> {
@@ -22,6 +21,6 @@ public class Restrictions {
             );
             System.out.println();
         });
-        return sequenceOfConstraints;
+        return paths;
     }
 }

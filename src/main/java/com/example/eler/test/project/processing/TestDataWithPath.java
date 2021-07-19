@@ -1,7 +1,6 @@
 package com.example.eler.test.project.processing;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TestDataWithPath {
 
@@ -30,10 +29,6 @@ public class TestDataWithPath {
                             int data = Integer.parseInt(param);
                             int[] dataList = {data};
                             addDifferent(listOfDataPerPath, "tipoCliente", dataList);
-                        }if (param.contains("!=")) {
-                            param = param.replace("tipoCliente!=", "");
-                            int data = Integer.parseInt(param);
-                            differentTypeOfCustomer(listOfDataPerPath, data);
                         }if (param.equals("primeiraCompra")) {
                             int[] dataList = {1};
                             listOfDataPerPath.put("primeiraCompra", dataList);
@@ -55,7 +50,7 @@ public class TestDataWithPath {
     }
 
     private void printTestData(Map<Integer, Map<String, int[]>> listOfData) {
-        System.out.println("Lista de dados");
+        System.out.println("Dados para o teste");
         listOfData.forEach((integer, stringMap) -> {
             System.out.println("Caminho: " + integer);
             for (String key : stringMap.keySet()) {
@@ -72,23 +67,13 @@ public class TestDataWithPath {
         addDifferent(listOfDataPerPath, "valorCompra", dataList);
     }
 
-    private void differentTypeOfCustomer(Map<String, int[]> listOfDataPerPath, int customer) {
-        ArrayList<Integer> customers = new ArrayList<>(
-                Arrays.stream(new int[]{0, 1, 2, 3}).boxed().collect(Collectors.toList()));
-        customers.remove(Integer.valueOf(customer));
-        addDifferent(listOfDataPerPath,"tipoCliente", customers.stream().mapToInt(j -> j).toArray());
-    }
-
     private void addDifferent(Map<String, int[]> listOfDataPerPath, String param, int[] dataList) {
         if (listOfDataPerPath.isEmpty() || listOfDataPerPath.get(param) == null) {
             listOfDataPerPath.put(param, dataList);
         } else {
-            int[] previousData = listOfDataPerPath.get(param);
             Set<Integer> newData = new HashSet();
             for (int dataInList : dataList) {
                 newData.add(dataInList);
-            }for (int dataInPreviousList : previousData) {
-                newData.add(dataInPreviousList);
             }
             listOfDataPerPath.replace(param, newData.stream().mapToInt(j -> j).toArray());
         }

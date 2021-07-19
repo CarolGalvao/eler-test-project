@@ -1,6 +1,9 @@
 package com.example.eler.test.project.processing;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
@@ -60,20 +63,13 @@ public class DataMatrix {
                 if(!equal.get())finalData.add(arrayList);
             }
         });
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(0);
-        arrayList.add(0);
-        arrayList.add(0);
-        arrayList.add(0);
-
-        finalData.add(arrayList);
         printMatrix(finalData);
         return finalData;
     }
 
     private void printMatrix(ArrayList<ArrayList<Integer>> data){
         System.out.println("");
-        System.out.println("Matriz de dados");
+        System.out.println("Casos de Teste");
         System.out.println("Valor   Primeira Compra   Cliente     Resultado");
         data.forEach(datas -> {
                 for (int value: datas) {

@@ -18,7 +18,7 @@ public class Print {
         System.out.println(" ");
         System.out.println("Grafo: ");
         graphic.printTree(root);
-        String path[] = new String[15];
+        String[] path = new String[15];
         System.out.println(" ");
         System.out.println("Identificar caminhos: ");
         pathsPrint.printPaths(root, path, 0);

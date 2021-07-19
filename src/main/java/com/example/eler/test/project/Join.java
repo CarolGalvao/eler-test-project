@@ -2,6 +2,7 @@ package com.example.eler.test.project;
 
 import com.example.eler.test.project.binaryTree.Tree;
 import com.example.eler.test.project.processing.Print;
+import com.example.eler.test.project.processing.ReadFile;
 import org.springframework.stereotype.Component;
 
 @Component
